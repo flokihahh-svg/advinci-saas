@@ -1,22 +1,15 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+import os
 
-# نقوم بإنشاء تطبيق FastAPI
 app = FastAPI()
 
-# هذا الجزء هو المسؤول عن الواجهة الرئيسية
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def read_root():
-    return {
-        "message": "أهلاً بك في موقع Lutam الاحترافي",
-        "status": "الموقع يعمل بنجاح",
-        "description": "هذا هو مشروعي الأول المرفوع على سيرفر Render"
-    }
-
-# صفحة معلومات إضافية
-@app.get("/info")
-def get_info():
-    return {
-        "user": "Lutam",
-        "location": "Iraq",
-        "message": "أنا الآن مبرمج رسمي على الإنترنت!"
-    }
+    # هذا الكود سيقرأ ملف index.html من مجلد templates ويظهره
+    file_path = "templates/index.html"
+    if os.path.exists(file_path):
+        with open(file_path, "r", encoding="utf-8") as f:
+            return f.read()
+    else:
+        return "<h1>ملف index.html غير موجود، تأكد من رفعه داخل مجلد templates</h1>"
