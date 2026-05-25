@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>AdVinci AI - صانع الإعلانات</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f9; padding: 20px; }
+        .container { max-width: 500px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        input, textarea, select, button { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; font-weight: bold; cursor: pointer; border: none; }
+        button:hover { background-color: #0056b3; }
+
+        /* ستايل شاشة التحميل */
+        #loading-overlay {
+            display: none; /* مخفية في البداية */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); color: white;
+            justify-content: center; align-items: center; flex-direction: column;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>أهلاً بك في AdVinci AI</h2>
+    <form action="/process" method="post" id="adForm">
+        <label>اسم المنتج:</label>
+        <input type="text" name="product_name" required>
+        <label>نص الإعلان:</label>
+        <textarea name="script_text" rows="5" required></textarea>
+        <label>نوع الفيديو:</label>
+        <select name="video_type">
+            <option value="tech">تكنولوجيا وبرمجة</option>
+            <option value="nature">طبيعة ومناظر</option>
+            <option value="charity">عطاء وصدقة</option>
+        </select>
+        <button type="submit">صناعة الإعلان الآن</button>
+    </form>
+</div>
+
+<div id="loading-overlay">
+    <h2>جاري العمل على المونتاج...</h2>
+    <p>يرجى الانتظار، هذا قد يستغرق بضع ثوانٍ</p>
+</div>
+
+<script>
+    // تفعيل شاشة التحميل عند إرسال النموذج
+    document.getElementById('adForm').addEventListener('submit', function() {
+        document.getElementById('loading-overlay').style.display = 'flex';
+    });
+</script>
+
+</body>
+</html>
