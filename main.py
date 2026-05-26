@@ -3,7 +3,7 @@ from fastapi.templating import Jinja2Templates
 
 app = FastAPI()
 
-# الربط مع المجلد
+# تعريف مكان ملفات التصميم
 templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
